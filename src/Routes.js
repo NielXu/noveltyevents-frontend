@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import UnauthenticatedRoute from './components/UnauthenticatedRoute';
 import AuthenticatedRoute from './components/AuthenticatedRoute';
 import Login from './containers/Login';

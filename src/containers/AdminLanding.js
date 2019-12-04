@@ -6,7 +6,6 @@ export default class Landing extends React.Component {
     this.state = {
       loading: false,
     }
-    console.log(this.props);
   }
 
   render() {

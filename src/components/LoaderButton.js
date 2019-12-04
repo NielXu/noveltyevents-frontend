@@ -20,6 +20,7 @@ export default ({
     className={`LoaderButton ${className}`}
     disabled={disabled || loading}
     {...props}
+    style={{ cursor: disabled || loading? 'not-allowed' : '' }}
   >
     {loading? loadingText : text}
   </Button>
