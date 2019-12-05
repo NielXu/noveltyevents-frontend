@@ -5,10 +5,12 @@ import AuthenticatedRoute from './components/AuthenticatedRoute';
 import Login from './containers/Login';
 import MemberLanding from './containers/MemberLanding';
 import AdminLanding from './containers/AdminLanding';
+import AdminEvent from './containers/AdminEvents.js';
 
 export default ({ childProps }) => 
   <Switch>
-    <AuthenticatedRoute exact path="/member" component={MemberLanding} props={childProps} />
-    <AuthenticatedRoute exact path="/admin" component={AdminLanding} props={childProps} />
+    <AuthenticatedRoute exact path="/member" component={MemberLanding} props={childProps} role="member" />
+    <AuthenticatedRoute exact path="/admin/events" component={AdminEvent} props={childProps} role="admin" />
+    <AuthenticatedRoute exact path="/admin" component={AdminLanding} props={childProps} role="admin" />
     <UnauthenticatedRoute path="/" component={Login} props={childProps} />
   </Switch>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class Landing extends React.Component {
+export default class AdminLanding extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -9,6 +9,10 @@ export default class Landing extends React.Component {
   }
 
   render() {
-    return <h2>Admin Landing page</h2>
+    return (
+      <div>
+        Admin landing page
+      </div>
+    )
   }
 }
