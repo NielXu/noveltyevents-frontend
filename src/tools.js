@@ -21,4 +21,19 @@ function queryString(name, url = window.location.href) {
  return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-export { queryString };
+/**
+ * Evaluate if user has sufficient permission to execute,
+ * return true if NOT, false if user has permission.
+ * 
+ * @param {String} required Required permission
+ * @param {String} permission Actual permission
+ */
+function evaluatePermission(required, permission) {
+  const pmap = {'low': 0, 'medium': 1, 'high': 2};
+  if(pmap[permission] < pmap[required]) {
+    return true;
+  }
+  return false;
+}
+
+export { queryString, evaluatePermission };

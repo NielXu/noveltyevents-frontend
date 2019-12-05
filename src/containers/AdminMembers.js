@@ -12,7 +12,7 @@ export default class AdminMembers extends React.Component {
   render() {
     return (
       <div>
-        <MemberTable />
+        <MemberTable permission={this.props.userPermission}/>
       </div>
     )
   }

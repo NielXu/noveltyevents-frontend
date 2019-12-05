@@ -1,6 +1,8 @@
 import React from 'react';
+import { Dropdown } from 'react-bootstrap';
 import Loader from './Loader';
 import BootstrapTable from 'react-bootstrap-table-next';
+import Permission from './Permission';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 
 export default class MembersTable extends React.Component {
@@ -10,6 +12,40 @@ export default class MembersTable extends React.Component {
       loading: true,
       data: [],
     }
+  }
+
+  optionFormatter = (cell, row, rowIndex, extra) => {
+    return (
+      <Dropdown>
+          <Dropdown.Toggle variant="info" id="dropdown-basic">
+            More
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Permission
+              req="medium"
+              permission={this.props.permission}
+              component={
+                <Dropdown.Item href="#/action-1" value={row.id}>Update</Dropdown.Item>
+              }
+            />
+            <Permission
+              req="low"
+              permission={this.props.permission}
+              component={
+                <Dropdown.Item href="#/action-2" value={row.id}>Contact</Dropdown.Item>
+              }
+            />
+            <Dropdown.Divider />
+            <Permission
+              req="high"
+              permission={this.props.permission}
+              component={
+                <Dropdown.Item href="#/action-3" value={row.id}>Delete</Dropdown.Item>
+              }
+            />
+          </Dropdown.Menu>
+      </Dropdown>
+    )
   }
 
   componentDidMount() {
@@ -31,10 +67,6 @@ export default class MembersTable extends React.Component {
   
   render() {
     const columns = [{
-      dataField: 'id',
-      text: 'ID',
-      hidden: true,
-    }, {
       dataField: 'firstname',
       text: 'First Name'
     }, {
@@ -46,6 +78,10 @@ export default class MembersTable extends React.Component {
     }, {
       dataField: 'join',
       text: 'Join'
+    }, {
+      dataField: 'id',
+      text: '',
+      formatter: this.optionFormatter
     }];
 
     return (

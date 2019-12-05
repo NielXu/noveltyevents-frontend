@@ -12,6 +12,7 @@ class App extends React.Component {
       isAuthenticated: false,
       isAuthenticating: true,
       userRole: '',
+      userPermission: '',
     }
   }
 
@@ -27,12 +28,18 @@ class App extends React.Component {
     this.setState({ userRole: role });
   }
 
+  setUserPermission = permission => {
+    this.setState({ userPermission: permission });
+  }
+
   render() {
     const childProps = {
       isAuthenticated: this.state.isAuthenticated,
       userHasAuthenticated: this.userHasAuthenticated,
       userRole: this.state.userRole,
       setUserRole: this.setUserRole,
+      userPermission: this.state.userPermission,
+      setUserPermission: this.setUserPermission,
     };
 
     return (
