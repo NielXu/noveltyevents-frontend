@@ -51,7 +51,7 @@ class App extends React.Component {
                           <Nav.Link className="mr-auto">Suggestions</Nav.Link>
                         </>
                       : <>
-                          <Nav.Link className="mr-auto">Events</Nav.Link>
+                          <Nav.Link className="mr-auto" href="/admin/events">Events</Nav.Link>
                           <Nav.Link className="mr-auto">Members</Nav.Link>
                           <Nav.Link className="mr-auto">Stat</Nav.Link>
                         </>

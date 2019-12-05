@@ -10,7 +10,7 @@ export default ({ component: C, props: cProps, ...rest }) => {
       render={props => 
         !cProps.isAuthenticated
           ? <C {...props} {...cProps} /> 
-          : <Redirect to={redirect === "" || redirect === null? "/" : redirect}/>
+          : <Redirect to={redirect === "" || redirect === null? `/${cProps.userRole}` : redirect}/>
       }
     />
   )
