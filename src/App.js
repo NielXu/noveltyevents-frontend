@@ -14,6 +14,10 @@ class App extends React.Component {
       userRole: '',
     }
   }
+
+  componentDidMount() {
+
+  }
   
   userHasAuthenticated = authenticated => {
     this.setState({ isAuthenticated: authenticated });

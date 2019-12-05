@@ -40,11 +40,9 @@ export default class Login extends React.Component {
       <div>
         <Container>
           <Row>
+            <Col>{/* This is an empty col */}</Col>
             <Col>
-              {/* This is empty col */}
-            </Col>
-            <Col>
-            <Form onSubmit={this.onLoginFormSubmit} className="center-text">
+            <Form onSubmit={this.onLoginFormSubmit} className="center-text login-box">
               <Form.Group controlId="email">
                 <Form.Control
                   autoFocus
@@ -63,16 +61,22 @@ export default class Login extends React.Component {
                 />
               </Form.Group>
               <Form.Group>
-                <Form.Check
-                  label="Member"
-                  checked={this.state.roleAsMember}
-                  onChange={e => this.setState({ roleAsMember: e.target.checked })}
-                  />
-                <Form.Check
-                  label="Admin"
-                  checked={!this.state.roleAsMember}
-                  onChange={e => this.setState({ roleAsMember: !e.target.checked })}
-                />
+                <Row>
+                  <Col>
+                    <Form.Check
+                      label="Member"
+                      checked={this.state.roleAsMember}
+                      onChange={e => this.setState({ roleAsMember: e.target.checked })}
+                    />
+                  </Col>
+                  <Col>
+                    <Form.Check
+                      label="Admin"
+                      checked={!this.state.roleAsMember}
+                      onChange={e => this.setState({ roleAsMember: !e.target.checked })}
+                    />
+                  </Col>
+                </Row>
               </Form.Group>
               <LoaderButton
                 loading={this.state.loggingIn}
@@ -80,6 +84,7 @@ export default class Login extends React.Component {
                 text="Login"
                 loadingText="Logging in ..."
                 disabled={!this.validateForm()}
+                className="login-loader-button"
               />
               {this.state.loginError &&
                 <Alert
@@ -93,9 +98,7 @@ export default class Login extends React.Component {
               }
               </Form>
             </Col>
-            <Col>
-              {/* This is empty col */}
-            </Col>
+            <Col>{/* This is an empty col */}</Col>
           </Row>
         </Container>
       </div>
