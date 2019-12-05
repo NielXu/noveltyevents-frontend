@@ -41,7 +41,7 @@ export default class Login extends React.Component {
         <Container>
           <Row>
             <Col>{/* This is an empty col */}</Col>
-            <Col>
+            <Col md={3}>
             <Form onSubmit={this.onLoginFormSubmit} className="center-text login-box">
               <Form.Group controlId="email">
                 <Form.Control
