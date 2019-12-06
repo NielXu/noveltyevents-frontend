@@ -5,6 +5,7 @@ import BootstrapTable from 'react-bootstrap-table-next';
 import Permission from './Permission';
 import { MEMBERS_MOCK_FACTORY as FACTORY } from '../tools';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+import './MembersTable.css';
 
 export default class MembersTable extends React.Component {
   constructor(props) {
@@ -70,6 +71,9 @@ export default class MembersTable extends React.Component {
       dataField: 'email',
       text: 'Email'
     }, {
+      dataField: 'card',
+      text: 'Card Number'
+    }, {
       dataField: 'join',
       text: 'Join'
     }, {
@@ -87,6 +91,7 @@ export default class MembersTable extends React.Component {
               keyField='id'
               data={this.state.data}
               columns={columns}
+              rowClasses="row-wordbreak"
             />
           }
         />

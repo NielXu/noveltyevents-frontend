@@ -1,3 +1,7 @@
 .disabled-element {
   cursor: not-allowed;
 }
+
+.row-wordbreak {
+  word-break: break-all;
+}

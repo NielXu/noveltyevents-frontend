@@ -157,6 +157,7 @@ const MEMBERS_MOCK_FACTORY = new MockFactory([
     firstname: 'Daniel',
     lastname: 'Xu',
     email: '123@a.com',
+    card: 'x12390',
     join: '2019-10-10'
   },
   {
@@ -164,18 +165,21 @@ const MEMBERS_MOCK_FACTORY = new MockFactory([
     firstname: 'JunXing',
     lastname: 'Xu',
     email: 'ut@utoronto.ca',
+    card: 'x0931a',
     join: '2020-01-01'
   }, {
     id: '2',
     firstname: 'Paul',
     lastname: 'Liu',
     email: 'paul.liu@ut.com',
+    card: 'x2017LP',
     join: '2017-04-20'
   }, {
     id: '3',
     firstname: 'Choyin',
     lastname: 'Yong',
     email: 'choy.in@domain.com',
+    card: 'xA2130',
     join: '2019-01-01'
   }
 ])
