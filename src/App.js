@@ -54,19 +54,20 @@ class App extends React.Component {
                 ? <>
                     {this.state.userRole === 'member'
                       ? <>
-                          <Nav.Link className="mr-auto">Events</Nav.Link>
-                          <Nav.Link className="mr-auto">Suggestions</Nav.Link>
+                          <Nav.Link className="mr-auto" href="/member/events">Events</Nav.Link>
+                          <Nav.Link className="mr-auto" href="/member/feedback">Feedback</Nav.Link>
                         </>
                       : <>
                           <Nav.Link className="mr-auto" href="/admin/events">Events</Nav.Link>
-                          <Nav.Link className="mr-auto">Members</Nav.Link>
-                          <Nav.Link className="mr-auto">Stat</Nav.Link>
+                          <Nav.Link className="mr-auto" href="/admin/members">Members</Nav.Link>
+                          <Nav.Link className="mr-auto" href="/admin/stat">Stat</Nav.Link>
+                          <Nav.Link className="mr-auto" href="/admin/feedback">Feedback</Nav.Link>
                         </>
                     }
                   </>
                 : <>
-                    <Nav.Link href="#events">Events</Nav.Link>
-                    <Nav.Link href="#about">About</Nav.Link>
+                    <Nav.Link href="/events">Events</Nav.Link>
+                    <Nav.Link href="/about">About</Nav.Link>
                   </>
               }
             </Nav>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { evaluatePermission } from '../tools';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import './Permission.css';
 
 export default function(props) {
   if(evaluatePermission(props.req, props.permission)) {
@@ -14,7 +15,7 @@ export default function(props) {
             {props.text? props.text : "No permission"}
           </Tooltip>
         }>
-          <div>{ne}</div>
+          <div className="permission-wrapper">{ne}</div>
       </OverlayTrigger>
     )
   }
