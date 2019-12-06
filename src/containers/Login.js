@@ -87,20 +87,20 @@ export default class Login extends React.Component {
                 disabled={!this.validateForm()}
                 className="login-loader-button"
               />
-              {this.state.loginError &&
-                <Alert
-                  variant="danger"
-                  dismissible
-                  onClose={e => this.setState({ loginError: '' })}
-                  className="alert-message"
-                >
-                  {this.state.loginError}
-                </Alert>
-              }
               </Form>
             </Col>
             <Col>{/* This is an empty col */}</Col>
           </Row>
+          {this.state.loginError &&
+            <Alert
+              variant="danger"
+              dismissible
+              onClose={e => this.setState({ loginError: '' })}
+              className="alert-message"
+            >
+              {this.state.loginError}
+            </Alert>
+          }
         </Container>
       </div>
     );
