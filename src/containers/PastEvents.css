@@ -4,3 +4,9 @@
 .image-gallery-play-button:focus, .image-gallery-right-nav:focus {
     outline: none;
 }
+
+.gallery-container {
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 70px;
+}

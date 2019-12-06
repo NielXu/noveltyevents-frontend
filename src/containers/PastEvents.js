@@ -1,32 +1,35 @@
 import React from 'react';
 import ImageGallery from 'react-image-gallery';
+import { EVENTS_IMAGES_MOCK_FACTORY as FACTORY } from '../tools';
+import Loader from '../components/Loader';
 import './PastEvents.css';
 
 export default class PastEvents extends React.Component {
     constructor(props) {
     super(props);
     this.state = {
-      images: [
-        {
-          original: 'https://picsum.photos/id/1018/1000/600/',
-          thumbnail: 'https://picsum.photos/id/1018/250/150/',
-        },
-        {
-          original: 'https://picsum.photos/id/1015/1000/600/',
-          thumbnail: 'https://picsum.photos/id/1015/250/150/',
-        },
-        {
-          original: 'https://picsum.photos/id/1019/1000/600/',
-          thumbnail: 'https://picsum.photos/id/1019/250/150/',
-        },
-      ]
+      images: [],
+      loading: true,
     }
+  }
+
+  componentDidMount() {
+    FACTORY.getDataDelay(800, (data) => {
+      this.setState({ images: data, loading: false });
+    });
   }
 
   render() {
     return (
       <div>
-        <ImageGallery items={this.state.images} />
+        <Loader
+          loading={this.state.loading}
+          component={
+            <div className="gallery-container">
+              <ImageGallery items={this.state.images} />
+            </div>
+          }
+        />
       </div>
     )
   }

@@ -182,6 +182,33 @@ const MEMBERS_MOCK_FACTORY = new MockFactory([
     card: 'xA2130',
     join: '2019-01-01'
   }
-])
+]);
 
-export { queryString, evaluatePermission, MockFactory, MEMBERS_MOCK_FACTORY };
+const EVENTS_IMAGES_MOCK_FACTORY = new MockFactory([
+  {
+    original: 'https://picsum.photos/id/1018/1000/600/',
+    thumbnail: 'https://picsum.photos/id/1018/250/150/',
+    description: 'This is a public image used for testing',
+    originalTitle: 'Image 1'
+  },
+  {
+    original: 'https://picsum.photos/id/1015/1000/600/',
+    thumbnail: 'https://picsum.photos/id/1015/250/150/',
+    description: 'This is also a public image used for testing',
+    originalTitle: 'Image 2'
+  },
+  {
+    original: 'https://picsum.photos/id/1019/1000/600/',
+    thumbnail: 'https://picsum.photos/id/1019/250/150/',
+    description: 'And this one as well!',
+    originalTitle: 'Image 3'
+  },
+]);
+
+export {
+  queryString,
+  evaluatePermission,
+  MockFactory,
+  MEMBERS_MOCK_FACTORY,
+  EVENTS_IMAGES_MOCK_FACTORY,
+};
