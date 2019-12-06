@@ -23,7 +23,7 @@ export default class Login extends React.Component {
     setTimeout(() => {
       if(this.state.email === '123@a.com' && this.state.password === '123') {
         this.props.setUserRole(this.state.roleAsMember? 'member' : 'admin');
-        this.props.setUserPermission('low');
+        this.props.setUserPermission('high');
         this.props.userHasAuthenticated(true);
       }
       else {

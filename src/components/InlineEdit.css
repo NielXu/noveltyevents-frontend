@@ -1,0 +1,14 @@
+.inline-edit-wrap {
+    height: 30px;
+    width: 100px;
+}
+
+.inline-edit {
+    height: 100%;
+    width: 100%;
+    border: 0;
+}
+
+.inline-edit-wrap:hover {
+    background-color: #e9ecef;
+}

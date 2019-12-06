@@ -4,6 +4,8 @@ import Loader from './Loader';
 import BootstrapTable from 'react-bootstrap-table-next';
 import Permission from './Permission';
 import { MEMBERS_MOCK_FACTORY as FACTORY } from '../tools';
+import Alert from 'react-bootstrap-sweetalert';
+import LoadingOverlay from 'react-loading-overlay';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import './MembersTable.css';
 
@@ -11,8 +13,11 @@ export default class MembersTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      updating: false,
       loading: true,
       data: [],
+      showDeleteConfirm: false,
+      pendingDeletion: '',
     }
   }
 
@@ -42,7 +47,14 @@ export default class MembersTable extends React.Component {
               req="high"
               permission={this.props.permission}
               component={
-                <Dropdown.Item href="#/action-3" value={row.id}>Delete</Dropdown.Item>
+                <Dropdown.Item
+                  onClick={()=>this.setState({
+                    pendingDeletion: row.id,
+                    showDeleteConfirm: true
+                  })}
+                >
+                  Delete
+                </Dropdown.Item>
               }
             />
           </Dropdown.Menu>
@@ -50,16 +62,23 @@ export default class MembersTable extends React.Component {
     )
   }
 
+  confirmDeleteMember = () => {
+    this.setState({ showDeleteConfirm: false, updating: true });
+    FACTORY.delete({name: "id", value: this.state.pendingDeletion}, 1000, () => {
+      this.setState({ updating: false });
+    });
+  }
+
   componentDidMount() {
     // Mock API fetch
-    FACTORY.getDataDelay(2000, (result) => {
+    FACTORY.getDataDelay(1000, (result) => {
       this.setState({
         loading: false,
         data: result,
       })
     });
   }
-  
+
   render() {
     const columns = [{
       dataField: 'firstname',
@@ -84,17 +103,36 @@ export default class MembersTable extends React.Component {
 
     return (
       <div>
-        <Loader
-          loading={this.state.loading}
-          component={
-            <BootstrapTable
-              keyField='id'
-              data={this.state.data}
-              columns={columns}
-              rowClasses="row-wordbreak"
-            />
-          }
-        />
+        <LoadingOverlay
+          active={this.state.updating}
+          spinner
+          text="Updating ..."
+        >
+          <Loader
+            loading={this.state.loading}
+            component={
+              <BootstrapTable
+                keyField='id'
+                data={this.state.data}
+                columns={columns}
+                rowClasses="row-wordbreak"
+              />
+            }
+          />
+        </LoadingOverlay>
+        <Alert
+          warning
+          showCancel
+          confirmBtnText="Yes, delete it"
+          confirmBtnBsStyle="danger"
+          title="Deleting member"
+          onConfirm={this.confirmDeleteMember}
+          onCancel={() => this.setState({ showDeleteConfirm: false })}
+          focusCancelBtn
+          show={this.state.showDeleteConfirm}
+        >
+          Are you sure to delete this member?
+        </Alert>
       </div>
     )
   }

@@ -11,8 +11,11 @@ export default class AdminMembers extends React.Component {
 
   render() {
     return (
-      <div>
-        <MemberTable permission={this.props.userPermission}/>
+      <div className="full-height full-width">
+        <MemberTable
+          permission={this.props.userPermission}
+          setLoading={this.props.setLoading}
+        />
       </div>
     )
   }

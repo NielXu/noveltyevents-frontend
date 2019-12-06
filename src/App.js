@@ -15,10 +15,6 @@ class App extends React.Component {
       userPermission: '',
     }
   }
-
-  componentDidMount() {
-
-  }
   
   userHasAuthenticated = authenticated => {
     this.setState({ isAuthenticated: authenticated });
@@ -43,7 +39,7 @@ class App extends React.Component {
     };
 
     return (
-      <div>
+      <div className="full-height full-width">
         <Navbar bg="light" variant="light">
           <Navbar.Brand href="/">
             Novelty UTSC
