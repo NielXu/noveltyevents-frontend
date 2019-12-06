@@ -29,7 +29,7 @@ export default class Login extends React.Component {
       else {
         this.setState({ loginError: 'Incorrect username or password', loggingIn: false });
       }
-    }, 2000);
+    }, 600);
   }
 
   validateForm() {
