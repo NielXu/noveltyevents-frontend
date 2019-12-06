@@ -1,0 +1,6 @@
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
+.image-gallery-fullscreen-button:focus, .image-gallery-left-nav:focus,
+.image-gallery-play-button:focus, .image-gallery-right-nav:focus {
+    outline: none;
+}
