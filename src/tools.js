@@ -58,6 +58,12 @@ class MockFactory {
     this.dbData = newData;
   }
 
+  getDataDelay(delay, callback) {
+    setTimeout(() => {
+      callback(this.dbData);
+    }, delay);
+  }
+
   search(k, delay, callback) {
     function doSearch(k, dbData) {
       const kname = k.name;
@@ -145,4 +151,33 @@ class MockFactory {
 
 }
 
-export { queryString, evaluatePermission, MockFactory };
+const MEMBERS_MOCK_FACTORY = new MockFactory([
+  {
+    id: '0',
+    firstname: 'Daniel',
+    lastname: 'Xu',
+    email: '123@a.com',
+    join: '2019-10-10'
+  },
+  {
+    id: '1',
+    firstname: 'JunXing',
+    lastname: 'Xu',
+    email: 'ut@utoronto.ca',
+    join: '2020-01-01'
+  }, {
+    id: '2',
+    firstname: 'Paul',
+    lastname: 'Liu',
+    email: 'paul.liu@ut.com',
+    join: '2017-04-20'
+  }, {
+    id: '3',
+    firstname: 'Choyin',
+    lastname: 'Yong',
+    email: 'choy.in@domain.com',
+    join: '2019-01-01'
+  }
+])
+
+export { queryString, evaluatePermission, MockFactory, MEMBERS_MOCK_FACTORY };

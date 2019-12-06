@@ -3,6 +3,7 @@ import { Dropdown } from 'react-bootstrap';
 import Loader from './Loader';
 import BootstrapTable from 'react-bootstrap-table-next';
 import Permission from './Permission';
+import { MEMBERS_MOCK_FACTORY as FACTORY } from '../tools';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 
 export default class MembersTable extends React.Component {
@@ -50,19 +51,12 @@ export default class MembersTable extends React.Component {
 
   componentDidMount() {
     // Mock API fetch
-    setTimeout(() => {
+    FACTORY.getDataDelay(2000, (result) => {
       this.setState({
         loading: false,
-        data: [{
-          id: "asdo9123",
-          username: "nielxu",
-          firstname: 'Daniel',
-          lastname: 'Xu',
-          email: '123@a.com',
-          join: '2019-10-10'
-        }]
-      },)
-    }, 3000);
+        data: result,
+      })
+    });
   }
   
   render() {
