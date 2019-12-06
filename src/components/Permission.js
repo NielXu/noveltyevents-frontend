@@ -4,7 +4,7 @@ import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import './Permission.css';
 
 export default function(props) {
-  if(evaluatePermission(props.req, props.permission)) {
+  if(!evaluatePermission(props.req, props.permission)) {
     const ne = React.cloneElement(props.component, { disabled: true });
     return (
       <OverlayTrigger

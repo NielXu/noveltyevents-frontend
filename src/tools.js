@@ -23,7 +23,7 @@ function queryString(name, url = window.location.href) {
 
 /**
  * Evaluate if user has sufficient permission to execute,
- * return true if NOT, false if user has permission.
+ * return true if yes, false otherwise.
  * 
  * @param {String} required Required permission
  * @param {String} permission Actual permission
@@ -31,9 +31,9 @@ function queryString(name, url = window.location.href) {
 function evaluatePermission(required, permission) {
   const pmap = {'low': 0, 'medium': 1, 'high': 2};
   if(pmap[permission] < pmap[required]) {
-    return true;
+    return false;
   }
-  return false;
+  return true;
 }
 
 /**
