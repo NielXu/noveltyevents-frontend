@@ -28,23 +28,37 @@ export default class MemberDetailModal extends React.Component {
       >
         <Modal.Body>
           <span className="member-detail-modal-row">
-            <label>First name</label>
+            <h3>First name</h3>
             <InlineEdit
               text={this.getData("firstname")}
               wrapperClassName="member-detail-modal-field"
             />
           </span>
           <span className="member-detail-modal-row">
-            <label>Last name</label>
+            <h3>Last name</h3>
             <InlineEdit
               text={this.getData("lastname")}
               wrapperClassName="member-detail-modal-field"
             />
           </span>
           <span className="member-detail-modal-row">
-            <label>Email</label>
+            <h3>Email</h3>
             <InlineEdit
               text={this.getData("email")}
+              wrapperClassName="member-detail-modal-field"
+            />
+          </span>
+          <span className="member-detail-modal-row">
+            <h3>Card Number</h3>
+            <InlineEdit
+              text={this.getData("card")}
+              wrapperClassName="member-detail-modal-field"
+            />
+          </span>
+          <span className="member-detail-modal-row">
+            <h3>Join Date</h3>
+            <InlineEdit
+              text={this.getData("join")}
               wrapperClassName="member-detail-modal-field"
             />
           </span>

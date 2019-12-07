@@ -1,3 +1,11 @@
 .member-detail-modal-field {
-    width: 80%;
+    width: 50%;
+    line-height: 30px;
+    margin-bottom: 30px;
+}
+
+.member-detail-modal-row h3 {
+    color: rgb(94, 108, 132);
+    font-size: 18px;
+    font-weight: 600;
 }
