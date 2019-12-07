@@ -5,3 +5,8 @@
 .row-wordbreak {
   word-break: break-all;
 }
+
+.members-table-row:hover {
+  background-color: #e9ecef;
+  cursor: pointer;
+}

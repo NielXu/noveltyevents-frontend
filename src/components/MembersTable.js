@@ -2,6 +2,7 @@ import React from 'react';
 import { Dropdown } from 'react-bootstrap';
 import Loader from './Loader';
 import BootstrapTable from 'react-bootstrap-table-next';
+import MemberDetailModal from './MemberDetailModal';
 import Permission from './Permission';
 import { MEMBERS_MOCK_FACTORY as FACTORY } from '../tools';
 import Alert from 'react-bootstrap-sweetalert';
@@ -18,7 +19,13 @@ export default class MembersTable extends React.Component {
       data: [],
       showDeleteConfirm: false,
       pendingDeletion: '',
+      showMemberDetailModal: false,
+      memberDetail: '',
     }
+  }
+
+  setShowMemberDetailModal = (show) => {
+    this.setState({ showMemberDetailModal: show });
   }
 
   optionFormatter = (cell, row, rowIndex, extra) => {
@@ -98,8 +105,14 @@ export default class MembersTable extends React.Component {
     }, {
       dataField: 'id',
       text: '',
-      formatter: this.optionFormatter
+      hidden: true
     }];
+
+    const rowEvents = {
+      onClick: (e, row, rowIndex) => {
+        this.setState({ showMemberDetailModal: true, memberDetail: row });
+      }
+    }
 
     return (
       <div>
@@ -115,11 +128,17 @@ export default class MembersTable extends React.Component {
                 keyField='id'
                 data={this.state.data}
                 columns={columns}
-                rowClasses="row-wordbreak"
+                rowClasses="row-wordbreak members-table-row"
+                rowEvents={rowEvents}
               />
             }
           />
         </LoadingOverlay>
+        <MemberDetailModal
+          show={this.state.showMemberDetailModal}
+          setShow={this.setShowMemberDetailModal}
+          data={this.state.memberDetail}
+        />
         <Alert
           warning
           showCancel
