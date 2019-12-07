@@ -1,14 +1,23 @@
-.inline-edit-wrap {
+.inline-edit {
     height: 30px;
     width: 100px;
+    border: 0;
+    word-break: break-word;
 }
 
-.inline-edit {
+.inline-edit-editing {
     height: 100%;
     width: 100%;
-    border: 0;
 }
 
 .inline-edit-wrap:hover {
     background-color: #e9ecef;
+}
+
+.inline-edit-wrap, .inline-edit-wrap-editing {
+    -webkit-transition: all 150ms ease;
+    -moz-transition: all 150ms ease;
+    -ms-transition: all 150ms ease;
+    -o-transition: all 150ms ease;
+    transition: all 150ms ease;
 }
