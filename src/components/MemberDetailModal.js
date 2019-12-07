@@ -31,6 +31,10 @@ export default class MemberDetailModal extends React.Component {
             <h3>First name</h3>
             <InlineEdit
               text={this.getData("firstname")}
+              permission={{
+                req: "medium",
+                permission: this.props.permission
+              }}
               wrapperClassName="member-detail-modal-field"
             />
           </span>
@@ -39,6 +43,10 @@ export default class MemberDetailModal extends React.Component {
             <InlineEdit
               text={this.getData("lastname")}
               wrapperClassName="member-detail-modal-field"
+              permission={{
+                req: "medium",
+                permission: this.props.permission
+              }}
             />
           </span>
           <span className="member-detail-modal-row">
@@ -46,6 +54,11 @@ export default class MemberDetailModal extends React.Component {
             <InlineEdit
               text={this.getData("email")}
               wrapperClassName="member-detail-modal-field"
+              permission={{
+                req: 'supreme',
+                permission: this.props.permission,
+                text: 'Email cannot be changed'
+              }}
             />
           </span>
           <span className="member-detail-modal-row">
@@ -53,6 +66,11 @@ export default class MemberDetailModal extends React.Component {
             <InlineEdit
               text={this.getData("card")}
               wrapperClassName="member-detail-modal-field"
+              permission={{
+                req: 'supreme',
+                permission: this.props.permission,
+                text: 'Card number cannot be changed'
+              }}
             />
           </span>
           <span className="member-detail-modal-row">
@@ -60,6 +78,11 @@ export default class MemberDetailModal extends React.Component {
             <InlineEdit
               text={this.getData("join")}
               wrapperClassName="member-detail-modal-field"
+              permission={{
+                req: 'supreme',
+                permission: this.props.permission,
+                text: 'Join date cannot be changed'
+              }}
             />
           </span>
         </Modal.Body>

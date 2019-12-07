@@ -1,9 +1,7 @@
 import React from 'react';
-import { Dropdown } from 'react-bootstrap';
 import Loader from './Loader';
 import BootstrapTable from 'react-bootstrap-table-next';
 import MemberDetailModal from './MemberDetailModal';
-import Permission from './Permission';
 import { MEMBERS_MOCK_FACTORY as FACTORY } from '../tools';
 import Alert from 'react-bootstrap-sweetalert';
 import LoadingOverlay from 'react-loading-overlay';
@@ -28,46 +26,46 @@ export default class MembersTable extends React.Component {
     this.setState({ showMemberDetailModal: show });
   }
 
-  optionFormatter = (cell, row, rowIndex, extra) => {
-    return (
-      <Dropdown>
-          <Dropdown.Toggle variant="info" id="dropdown-basic">
-            More
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            <Permission
-              req="medium"
-              permission={this.props.permission}
-              component={
-                <Dropdown.Item href="#/action-1" value={row.id}>Update</Dropdown.Item>
-              }
-            />
-            <Permission
-              req="low"
-              permission={this.props.permission}
-              component={
-                <Dropdown.Item href="#/action-2" value={row.id}>Contact</Dropdown.Item>
-              }
-            />
-            <Dropdown.Divider />
-            <Permission
-              req="high"
-              permission={this.props.permission}
-              component={
-                <Dropdown.Item
-                  onClick={()=>this.setState({
-                    pendingDeletion: row.id,
-                    showDeleteConfirm: true
-                  })}
-                >
-                  Delete
-                </Dropdown.Item>
-              }
-            />
-          </Dropdown.Menu>
-      </Dropdown>
-    )
-  }
+  // optionFormatter = (cell, row, rowIndex, extra) => {
+  //   return (
+  //     <Dropdown>
+  //         <Dropdown.Toggle variant="info" id="dropdown-basic">
+  //           More
+  //         </Dropdown.Toggle>
+  //         <Dropdown.Menu>
+  //           <Permission
+  //             req="medium"
+  //             permission={this.props.permission}
+  //             component={
+  //               <Dropdown.Item href="#/action-1" value={row.id}>Update</Dropdown.Item>
+  //             }
+  //           />
+  //           <Permission
+  //             req="low"
+  //             permission={this.props.permission}
+  //             component={
+  //               <Dropdown.Item href="#/action-2" value={row.id}>Contact</Dropdown.Item>
+  //             }
+  //           />
+  //           <Dropdown.Divider />
+  //           <Permission
+  //             req="high"
+  //             permission={this.props.permission}
+  //             component={
+  //               <Dropdown.Item
+  //                 onClick={()=>this.setState({
+  //                   pendingDeletion: row.id,
+  //                   showDeleteConfirm: true
+  //                 })}
+  //               >
+  //                 Delete
+  //               </Dropdown.Item>
+  //             }
+  //           />
+  //         </Dropdown.Menu>
+  //     </Dropdown>
+  //   )
+  // }
 
   confirmDeleteMember = () => {
     this.setState({ showDeleteConfirm: false, updating: true });
@@ -138,6 +136,7 @@ export default class MembersTable extends React.Component {
           show={this.state.showMemberDetailModal}
           setShow={this.setShowMemberDetailModal}
           data={this.state.memberDetail}
+          permission={this.props.permission}
         />
         <Alert
           warning
