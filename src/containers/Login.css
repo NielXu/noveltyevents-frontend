@@ -15,3 +15,7 @@
 .login-loader-button {
   width: 100%;
 }
+
+.login-title {
+  margin-bottom: 20px;
+}
