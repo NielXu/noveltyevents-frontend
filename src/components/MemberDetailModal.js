@@ -33,7 +33,8 @@ export default class MemberDetailModal extends React.Component {
               text={this.getData("firstname")}
               permission={{
                 req: "medium",
-                permission: this.props.permission
+                permission: this.props.permission,
+                placement: 'right'
               }}
               wrapperClassName="member-detail-modal-field"
             />
@@ -45,7 +46,8 @@ export default class MemberDetailModal extends React.Component {
               wrapperClassName="member-detail-modal-field"
               permission={{
                 req: "medium",
-                permission: this.props.permission
+                permission: this.props.permission,
+                placement: 'right'
               }}
             />
           </span>
@@ -57,7 +59,8 @@ export default class MemberDetailModal extends React.Component {
               permission={{
                 req: 'supreme',
                 permission: this.props.permission,
-                text: 'Email cannot be changed'
+                text: 'Email cannot be changed',
+                placement: 'right'
               }}
             />
           </span>
@@ -69,7 +72,8 @@ export default class MemberDetailModal extends React.Component {
               permission={{
                 req: 'supreme',
                 permission: this.props.permission,
-                text: 'Card number cannot be changed'
+                text: 'Card number cannot be changed',
+                placement: 'right'
               }}
             />
           </span>
@@ -81,7 +85,8 @@ export default class MemberDetailModal extends React.Component {
               permission={{
                 req: 'supreme',
                 permission: this.props.permission,
-                text: 'Join date cannot be changed'
+                text: 'Join date cannot be changed',
+                placement: 'right'
               }}
             />
           </span>

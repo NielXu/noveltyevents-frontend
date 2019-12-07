@@ -107,10 +107,8 @@ export default class InlineEdit extends React.Component {
                       req={this.props.permission.req}
                       permission={this.props.permission.permission}
                       component={this.textRenderer()}
-                      text={this.props.permission.text
-                        ? this.props.permission.text
-                        : null
-                      }
+                      text={this.props.permission.text}
+                      placement={this.props.permission.placement}
                     />
                   )
                 : (
