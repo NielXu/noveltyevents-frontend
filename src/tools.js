@@ -29,7 +29,7 @@ function queryString(name, url = window.location.href) {
  * @param {String} permission Actual permission
  */
 function evaluatePermission(required, permission) {
-  const pmap = {'low': 0, 'medium': 1, 'high': 2};
+  const pmap = {'low': 0, 'medium': 1, 'high': 2, 'supreme': Number.MAX_VALUE};
   if(pmap[permission] < pmap[required]) {
     return false;
   }
