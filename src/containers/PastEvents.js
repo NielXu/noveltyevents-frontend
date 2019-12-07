@@ -25,8 +25,11 @@ export default class PastEvents extends React.Component {
         <Loader
           loading={this.state.loading}
           component={
-            <div className="gallery-container">
-              <ImageGallery items={this.state.images} />
+            <div className="center-text past-events">
+              <h3>Events Gallery</h3>
+              <div className="gallery-container">
+                <ImageGallery items={this.state.images} />
+              </div>
             </div>
           }
         />

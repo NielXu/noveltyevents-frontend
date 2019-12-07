@@ -8,5 +8,9 @@
 .gallery-container {
     width: 60%;
     margin: 0 auto;
-    margin-top: 70px;
+    margin-top: 20px;
+}
+
+.past-events {
+    margin-top: 30px;
 }
