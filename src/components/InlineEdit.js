@@ -1,6 +1,8 @@
 import React from 'react';
 import './InlineEdit.css';
+import { evaluatePermission } from '../tools';
 import TextArea from 'react-autosize-textarea';
+import Permission from './Permission';
 
 export default class InlineEdit extends React.Component {
   constructor(props) {
@@ -51,6 +53,30 @@ export default class InlineEdit extends React.Component {
     e.target.value = val;
   }
 
+  handleOnClick = () => {
+    const permission = this.props.permission;
+    if(!this.props.disabled) {
+      if(permission) {
+        if(evaluatePermission(permission.req, permission.permission)) {
+          this.setState({ isEditing: true });
+        }
+      }
+      else {
+        this.setState({ isEditing: true });
+      }
+    }
+  }
+
+  textRenderer = () => {
+    return (
+      <span
+        className={`inline-edit ${this.props.textClassName? this.props.textClassName : ""}`}
+      >
+        {this.state.editing}
+      </span>
+    )
+  }
+
   render() {
     return (
       <div
@@ -58,7 +84,7 @@ export default class InlineEdit extends React.Component {
           ? `inline-edit-wrap-editing ${this.props.wrapperClassName? this.props.wrapperClassName: ""}`
           : `inline-edit-wrap ${this.props.wrapperClassName? this.props.wrapperClassName: ""}`
         }
-        onClick={()=>this.setState({ isEditing: true })}
+        onClick={this.handleOnClick}
       >
         {this.state.isEditing
           ? <TextArea
@@ -74,11 +100,26 @@ export default class InlineEdit extends React.Component {
               onKeyDown={this.handleKeyDown}
               autoFocus
             />
-          : <span
-              className={`inline-edit ${this.props.textClassName? this.props.textClassName : ""}`}
-            >
-              {this.state.editing}
-            </span>
+          : <>
+              {this.props.permission
+                ? (
+                    <Permission
+                      req={this.props.permission.req}
+                      permission={this.props.permission.permission}
+                      component={this.textRenderer()}
+                      text={this.props.permission.text
+                        ? this.props.permission.text
+                        : null
+                      }
+                    />
+                  )
+                : (
+                  <>
+                    {this.textRenderer()}
+                  </>
+                )
+              }
+            </>
         }
       </div>
     )
