@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Alert, Container, Row, Col } from 'react-bootstrap';
 import LoaderButton from '../components/LoaderButton';
+import { grantMockToken } from '../tools';
 import './Login.css';
 
 export default class Login extends React.Component {
@@ -23,6 +24,7 @@ export default class Login extends React.Component {
     setTimeout(() => {
       if(this.state.email === '123@a.com' && this.state.password === '123') {
         this.props.setUserRole(this.state.roleAsMember? 'member' : 'admin');
+        grantMockToken();
         this.props.setUserPermission('high');
         this.props.userHasAuthenticated(true);
       }

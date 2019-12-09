@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
+import { auth, logout } from './tools';
 import Routes from './Routes';
 import './App.css';
 
@@ -15,6 +16,16 @@ class App extends React.Component {
       userPermission: '',
     }
   }
+
+  componentDidMount() {
+    // Mock Auth, hard coded user role and permission level
+    const authResult = auth('admin', 'high');
+    if(authResult.result) {
+      this.userHasAuthenticated(true);
+      this.setUserPermission(authResult.permission);
+      this.setUserRole(authResult.role);
+    }
+  }
   
   userHasAuthenticated = authenticated => {
     this.setState({ isAuthenticated: authenticated });
@@ -26,6 +37,16 @@ class App extends React.Component {
 
   setUserPermission = permission => {
     this.setState({ userPermission: permission });
+  }
+
+  handleLogout = () => {
+    this.setState({
+      isAuthenticated: false,
+      userPermission: '',
+      userRole: '',
+    })
+    logout();
+    this.props.history.push("/");
   }
 
   render() {
@@ -65,6 +86,11 @@ class App extends React.Component {
                     <Nav.Link href="/events">Events</Nav.Link>
                     <Nav.Link href="/about">About</Nav.Link>
                   </>
+              }
+            </Nav>
+            <Nav>
+              {this.state.isAuthenticated
+                && <Nav.Link className="mr-auto" onClick={this.handleLogout}>Logout</Nav.Link>
               }
             </Nav>
           </Navbar.Collapse>

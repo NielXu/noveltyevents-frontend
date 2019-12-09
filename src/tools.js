@@ -37,6 +37,63 @@ function evaluatePermission(required, permission) {
 }
 
 /**
+ * Grant a mock token, save it to the localstorage.
+ * If delay and callback is provided, it will set
+ * the localstorage after the delay.
+ * 
+ * @param {Number} delay Delay in ms
+ * @param {Function} callback Callback after delay
+ */
+function grantMockToken(delay, callback) {
+  if(delay) {
+    setTimeout(() => {
+      localStorage.setItem('dev-mock-token', "X");
+      callback();
+    }, delay)
+  }
+  else {
+    localStorage.setItem('dev-mock-token', "X");
+  }
+}
+
+/**
+ * Auth user, check if token in localstorage and is valid.
+ * If delay and callback is provided, the callback function
+ * will be invoked and passed the auth result after the delay.
+ * 
+ * If the token is valid, also return the desired role and permission.
+ * 
+ * @param {Number} delay Delay in ms
+ * @param {Function} callback Callback after delay
+ */
+function auth(role, permission, delay, callback) {
+  if(delay) {
+    setTimeout(() => {
+      if(localStorage.getItem('dev-mock-token') && localStorage.getItem('dev-mock-token') === 'X') {
+        callback(true, {role: role, permission: permission});
+      }
+      else {
+        callback(false);
+      }
+    }, delay)
+  }
+  else {
+    return {
+      role: role,
+      permission: permission,
+      result: localStorage.getItem('dev-mock-token') && localStorage.getItem('dev-mock-token') === 'X'
+    };
+  }
+}
+
+/**
+ * Log user out, remove localstorage token
+ */
+function logout() {
+  localStorage.removeItem('dev-mock-token');
+}
+
+/**
  * MockFactory is a mock database storing in json.
  * It copies the value passed from the constructor
  * and perform CRUD on it.
@@ -208,6 +265,9 @@ const EVENTS_IMAGES_MOCK_FACTORY = new MockFactory([
 export {
   queryString,
   evaluatePermission,
+  grantMockToken,
+  auth,
+  logout,
   MockFactory,
   MEMBERS_MOCK_FACTORY,
   EVENTS_IMAGES_MOCK_FACTORY,
