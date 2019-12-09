@@ -29,10 +29,12 @@ export default class InlineEdit extends React.Component {
       }
       else {
         this.setState({ original: this.state.editing });
+        if(this.props.onSave) this.props.onSave(this.state.editing);
       }
     }
     else {
       this.setState({ original: this.state.editing });
+      if(this.props.onSave) this.props.onSave(this.state.editing);
     }
   }
 
@@ -77,6 +79,11 @@ export default class InlineEdit extends React.Component {
     )
   }
 
+  handleTextAreaChange = (e) => {
+    this.setState({ editing: e.target.value });
+    if(this.props.onChange) this.props.onChange(e.target.value);
+  }
+
   render() {
     return (
       <div
@@ -93,7 +100,7 @@ export default class InlineEdit extends React.Component {
                 ? `inline-edit-editing ${this.props.textAreaClassName? this.props.textAreaClassName : ""}`
                 : `inline-edit ${this.props.textAreaClassName? this.props.textAreaClassName : ""}`
               }
-              onChange={(e)=>this.setState({ editing: e.target.value })}
+              onChange={this.handleTextAreaChange}
               onBlur={this.handleOnBlur}
               onFocus={this.handleOnFocus}
               value={this.state.editing}

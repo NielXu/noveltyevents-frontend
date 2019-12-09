@@ -7,12 +7,23 @@ export default class MemberDetailModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      firstname: "",
+      lastname: "",
     }
   }
 
   handleClose = () => {
     this.props.setShow(false);
+  }
+
+  handleOnClickConfirmUpdate = () => {
+    const data = JSON.parse(JSON.stringify(this.props.data));
+    for(var key in data) {
+      if(this.state.hasOwnProperty(key) && this.state[key]) {
+        data[key] = this.state[key];
+      }
+    }
+    this.props.onConfirmUpdate(data);
   }
 
   getData = (name, ifNotFound="") => {
@@ -37,6 +48,7 @@ export default class MemberDetailModal extends React.Component {
                 placement: 'right'
               }}
               wrapperClassName="member-detail-modal-field"
+              onChange={(text) => this.setState({ firstname: text })}
             />
           </span>
           <span className="member-detail-modal-row">
@@ -49,6 +61,7 @@ export default class MemberDetailModal extends React.Component {
                 permission: this.props.permission,
                 placement: 'right'
               }}
+              onChange={(text) => this.setState({ lastname: text })}
             />
           </span>
           <span className="member-detail-modal-row">
@@ -95,7 +108,7 @@ export default class MemberDetailModal extends React.Component {
           <Button variant="secondary" onClick={this.handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={this.handleClose}>
+          <Button variant="primary" onClick={this.handleOnClickConfirmUpdate}>
             Save Changes
           </Button>
         </Modal.Footer>

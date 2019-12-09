@@ -26,48 +26,22 @@ export default class MembersTable extends React.Component {
     this.setState({ showMemberDetailModal: show });
   }
 
-  // optionFormatter = (cell, row, rowIndex, extra) => {
-  //   return (
-  //     <Dropdown>
-  //         <Dropdown.Toggle variant="info" id="dropdown-basic">
-  //           More
-  //         </Dropdown.Toggle>
-  //         <Dropdown.Menu>
-  //           <Permission
-  //             req="medium"
-  //             permission={this.props.permission}
-  //             component={
-  //               <Dropdown.Item href="#/action-1" value={row.id}>Update</Dropdown.Item>
-  //             }
-  //           />
-  //           <Permission
-  //             req="low"
-  //             permission={this.props.permission}
-  //             component={
-  //               <Dropdown.Item href="#/action-2" value={row.id}>Contact</Dropdown.Item>
-  //             }
-  //           />
-  //           <Dropdown.Divider />
-  //           <Permission
-  //             req="high"
-  //             permission={this.props.permission}
-  //             component={
-  //               <Dropdown.Item
-  //                 onClick={()=>this.setState({
-  //                   pendingDeletion: row.id,
-  //                   showDeleteConfirm: true
-  //                 })}
-  //               >
-  //                 Delete
-  //               </Dropdown.Item>
-  //             }
-  //           />
-  //         </Dropdown.Menu>
-  //     </Dropdown>
-  //   )
-  // }
+  handleUpdateConfirm = (data) => {
+    this.setState({ updating: true, showMemberDetailModal: false });
+    // The data is updated but the table is not rerendering, this
+    // might due to the shouldComponentUpdate implementation
+    FACTORY.update({name: "id", value: data.id}, data, 500, (updated) => {
+      const newData = this.state.data.map((item) => {
+        if(updated.id === item.id) {
+          return updated;
+        }
+        return item;
+      });
+      this.setState({ data: newData, updating: false });
+    });
+  }
 
-  confirmDeleteMember = () => {
+  handleConfirmDeleteMember = () => {
     this.setState({ showDeleteConfirm: false, updating: true });
     FACTORY.delete({name: "id", value: this.state.pendingDeletion}, 1000, () => {
       this.setState({ updating: false });
@@ -137,6 +111,7 @@ export default class MembersTable extends React.Component {
           setShow={this.setShowMemberDetailModal}
           data={this.state.memberDetail}
           permission={this.props.permission}
+          onConfirmUpdate={this.handleUpdateConfirm}
         />
         <Alert
           warning
@@ -144,7 +119,7 @@ export default class MembersTable extends React.Component {
           confirmBtnText="Yes, delete it"
           confirmBtnBsStyle="danger"
           title="Deleting member"
-          onConfirm={this.confirmDeleteMember}
+          onConfirm={this.handleConfirmDeleteMember}
           onCancel={() => this.setState({ showDeleteConfirm: false })}
           focusCancelBtn
           show={this.state.showDeleteConfirm}
